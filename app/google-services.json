@@ -1,0 +1,185 @@
+{
+  "project_info": {
+    "project_number": "262425366314",
+    "firebase_url": "https://rocarides-1fa9c-default-rtdb.firebaseio.com",
+    "project_id": "rocarides-1fa9c",
+    "storage_bucket": "rocarides-1fa9c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:262425366314:android:190cd1e17f91575faf1853",
+        "android_client_info": {
+          "package_name": "com.rocasoftware.firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "262425366314-to94gs0s6gmuu1vva0arldnnu4i2gns6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpkHsWvu5_Gq4YjvQsl7sMbtRieO-aNws"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "262425366314-to94gs0s6gmuu1vva0arldnnu4i2gns6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:262425366314:android:c4bea03e4e1c1c79af1853",
+        "android_client_info": {
+          "package_name": "com.rocasoftware.firebase2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "262425366314-to94gs0s6gmuu1vva0arldnnu4i2gns6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpkHsWvu5_Gq4YjvQsl7sMbtRieO-aNws"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "262425366314-to94gs0s6gmuu1vva0arldnnu4i2gns6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:262425366314:android:1c60526fbcbe9bf0af1853",
+        "android_client_info": {
+          "package_name": "com.rocasoftware.rocamanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "262425366314-to94gs0s6gmuu1vva0arldnnu4i2gns6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpkHsWvu5_Gq4YjvQsl7sMbtRieO-aNws"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "262425366314-to94gs0s6gmuu1vva0arldnnu4i2gns6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:262425366314:android:508cfb6772101335af1853",
+        "android_client_info": {
+          "package_name": "com.rocasoftware.rocaridesadmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "262425366314-to94gs0s6gmuu1vva0arldnnu4i2gns6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpkHsWvu5_Gq4YjvQsl7sMbtRieO-aNws"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "262425366314-to94gs0s6gmuu1vva0arldnnu4i2gns6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:262425366314:android:2cf6e251e5817534af1853",
+        "android_client_info": {
+          "package_name": "com.rocasoftware.rocaridesconductor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "262425366314-to94gs0s6gmuu1vva0arldnnu4i2gns6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpkHsWvu5_Gq4YjvQsl7sMbtRieO-aNws"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "262425366314-to94gs0s6gmuu1vva0arldnnu4i2gns6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:262425366314:android:e881845618d82c2daf1853",
+        "android_client_info": {
+          "package_name": "com.rocasoftware.rocasuperuser"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "262425366314-to94gs0s6gmuu1vva0arldnnu4i2gns6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpkHsWvu5_Gq4YjvQsl7sMbtRieO-aNws"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "262425366314-to94gs0s6gmuu1vva0arldnnu4i2gns6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

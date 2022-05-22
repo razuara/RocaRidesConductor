@@ -48,6 +48,15 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        olvidastePasswordTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this,OlvidasteContraActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
     }
 
 

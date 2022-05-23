@@ -1,12 +1,12 @@
 package com.rocasoftware.rocaridesconductor;
 
 public class ConductorModel {
-    String nombre, apellido, telefono, email, fechaRegistro, FechaUltimoLogin,cuentaActivada,esManager,idManager;
+    String nombre, apellido, telefono, email, fechaRegistro, FechaUltimoLogin,cuentaActivada,esManager,idManager,sexo,estado,ciudad;
 
     public ConductorModel() {
     }
 
-    public ConductorModel(String nombre, String apellido, String telefono, String email, String fechaRegistro, String fechaUltimoLogin,String cuentaActivada,String esManager,String idManager) {
+    public ConductorModel(String nombre, String apellido, String telefono, String email, String fechaRegistro, String fechaUltimoLogin,String cuentaActivada,String esManager,String idManager,String sexo,String estado,String ciudad) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
@@ -16,6 +16,9 @@ public class ConductorModel {
         this.cuentaActivada = cuentaActivada;
         this.esManager = esManager;
         this.idManager = idManager;
+        this.sexo = sexo;
+        this.estado = estado;
+        this.ciudad = ciudad;
     }
 
     public String getNombre() {
@@ -88,6 +91,30 @@ public class ConductorModel {
 
     public void setIdManager(String idManager) {
         this.idManager = idManager;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
     }
 }
 

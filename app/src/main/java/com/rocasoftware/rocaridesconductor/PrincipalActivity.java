@@ -10,14 +10,24 @@ import android.view.View;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class PrincipalActivity extends AppCompatActivity {
-    CardView logoutCardView;
+    CardView conductoresCardView,logoutCardView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
 
+        conductoresCardView = findViewById(R.id.conductoresCardView);
         logoutCardView = findViewById(R.id.logoutCardView);
 
+
+        conductoresCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PrincipalActivity.this,ConductoresActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
         logoutCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

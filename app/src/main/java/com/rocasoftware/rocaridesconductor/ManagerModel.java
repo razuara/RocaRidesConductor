@@ -1,12 +1,12 @@
 package com.rocasoftware.rocaridesconductor;
 
 public class ManagerModel {
-    String nombre, apellido, telefono, email, fechaRegistro, FechaUltimoLogin,cuentaActivada;
+    String nombre, apellido, telefono, email, fechaRegistro, FechaUltimoLogin,cuentaActivada,sexo,estado,ciudad;
 
     public ManagerModel() {
     }
 
-    public ManagerModel(String nombre, String apellido, String telefono, String email, String fechaRegistro, String fechaUltimoLogin,String cuentaActivada) {
+    public ManagerModel(String nombre, String apellido, String telefono, String email, String fechaRegistro, String fechaUltimoLogin,String cuentaActivada,String sexo,String estado,String ciudad) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
@@ -14,6 +14,9 @@ public class ManagerModel {
         this.fechaRegistro = fechaRegistro;
         this.FechaUltimoLogin = fechaUltimoLogin;
         this.cuentaActivada = cuentaActivada;
+        this.sexo = sexo;
+        this.estado = estado;
+        this.ciudad = ciudad;
     }
 
     public String getNombre() {
@@ -70,5 +73,29 @@ public class ManagerModel {
 
     public void setCuentaActivada(String cuentaActivada) {
         this.cuentaActivada = cuentaActivada;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
     }
 }

@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.os.Message;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,7 +28,9 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.RemoteMessage;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
@@ -39,6 +43,7 @@ public class RegistroActivity extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference managerRef = db.collection("Managers");
     private CollectionReference conductorRef = db.collection("Conductores");
+    private CollectionReference sexoRef = db.collection("Sexo");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +58,7 @@ public class RegistroActivity extends AppCompatActivity {
         repetirpasswordEditText = findViewById(R.id.repetirpasswordEditText);
         registrarButton = findViewById(R.id.registrarButton);
 
+
         mAuth = FirebaseAuth.getInstance();
 
         registrarButton.setOnClickListener(new View.OnClickListener() {
@@ -63,6 +69,8 @@ public class RegistroActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
     private void validate()
     {
@@ -129,15 +137,18 @@ public class RegistroActivity extends AppCompatActivity {
                             String fechaUltimoLogin = getTimeDate();
                             String cuentaActivada = "No";
                             String esManager = "Si";
+                            String sexo = "";
+                            String estado = "";
+                            String ciudad = "";
 
                             String idUser = mAuth.getUid().toString();
 
-                            ManagerModel manager = new ManagerModel(nombre,apellido,telefono,email,fechaRegistro,fechaUltimoLogin,cuentaActivada);
+                            ManagerModel manager = new ManagerModel(nombre,apellido,telefono,email,fechaRegistro,fechaUltimoLogin,cuentaActivada,sexo,estado,ciudad);
                             managerRef.document(idUser).set(manager);
                             String idManager = idUser;
 
 
-                            ConductorModel conductor = new ConductorModel(nombre,apellido,telefono,email,fechaRegistro,fechaUltimoLogin,cuentaActivada,esManager,idManager);
+                            ConductorModel conductor = new ConductorModel(nombre,apellido,telefono,email,fechaRegistro,fechaUltimoLogin,cuentaActivada,esManager,idManager,sexo,estado,ciudad);
                             conductorRef.document(idUser).set(conductor)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override

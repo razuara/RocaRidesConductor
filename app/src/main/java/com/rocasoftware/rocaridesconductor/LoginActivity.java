@@ -3,8 +3,10 @@ package com.rocasoftware.rocaridesconductor;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.util.Patterns;
 import android.view.View;
@@ -26,17 +28,23 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 public class LoginActivity extends AppCompatActivity {
 
     private EditText emailEditText,passwordEditText;
     private Button accesoButton;
-    private TextView olvidastePasswordTextView,registroTextView;
+    private TextView olvidastePasswordTextView,registroTextView,privacidadTextView,terminosCondicionesTextView;
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -54,6 +62,18 @@ public class LoginActivity extends AppCompatActivity {
         accesoButton = findViewById(R.id.accesoButton);
         registroTextView = findViewById(R.id.registroTextView);
         olvidastePasswordTextView = findViewById(R.id.olvidastePasswordTextView);
+        privacidadTextView = findViewById(R.id.privacidadTextView);
+        terminosCondicionesTextView = findViewById(R.id.terminosCondicionesTextView);
+
+        privacidadTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this,PrivacidadActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
 
         registroTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,12 +154,32 @@ public class LoginActivity extends AppCompatActivity {
                                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                                         if (documentSnapshot.exists())
                                         {
-                                            accesoButton.setClickable(true);
-                                            accesoButton.setText("Acceso");
-                                            Intent intent = new Intent(LoginActivity.this,PrincipalActivity.class);
-                                            intent.putExtra("idUser",idUser);
-                                            startActivity(intent);
-                                            finish();
+
+                                            ManagerModel manager = documentSnapshot.toObject(ManagerModel.class);
+                                            String cuentaCompletada = manager.getCuentaCompletada();
+                                            if (cuentaCompletada.equals("Si"))
+                                            {
+                                                Map<String,Object> actualizador = new HashMap<>();
+                                                actualizador.put("fechaUltimoLogin",getTimeDate());
+
+                                                managerRef.document(idUser).update(actualizador);
+
+                                                accesoButton.setClickable(true);
+                                                accesoButton.setText("Acceso");
+                                                Intent intent = new Intent(LoginActivity.this,PrincipalActivity.class);
+                                                intent.putExtra("idUser",idUser);
+                                                startActivity(intent);
+                                                finish();
+                                            }
+                                            else
+                                            {
+                                                accesoButton.setClickable(true);
+                                                accesoButton.setText("Acceso");
+                                                Intent intent = new Intent(LoginActivity.this,RegistroExtraActivity.class);
+                                                intent.putExtra("idUser",idUser);
+                                                startActivity(intent);
+                                                finish();
+                                            }
                                         }
                                         else
                                         {
@@ -151,6 +191,7 @@ public class LoginActivity extends AppCompatActivity {
                                         }
                                     }
                                 });
+
                         }
                         else
                         {

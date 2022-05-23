@@ -7,15 +7,24 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference managerRef = db.collection("Managers");
     private final int DURACION_SPLASH = 3000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +44,37 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if (user!=null)
                 {
-                    String idUser = user.getUid();
-                    Intent intent = new Intent(MainActivity.this, PrincipalActivity.class);
-                    startActivity(intent);
-                    finish();
+                    String idUser= user.getUid();
+                    managerRef.document(idUser).get()
+                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                @Override
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    if (documentSnapshot.exists())
+                                    {
+                                        ManagerModel manager = documentSnapshot.toObject(ManagerModel.class);
+                                        String cuentaCompletada = manager.getCuentaCompletada();
+                                        if (cuentaCompletada.equals("Si"))
+                                        {
+                                            Map<String,Object> actualizador = new HashMap<>();
+                                            actualizador.put("fechaUltimoLogin",getTimeDate());
+
+                                            managerRef.document(idUser).update(actualizador);
+
+                                            Intent intent = new Intent(MainActivity.this,PrincipalActivity.class);
+                                            intent.putExtra("idUser",idUser);
+                                            startActivity(intent);
+                                            finish();
+                                        }
+                                        else
+                                        {
+                                            Intent intent = new Intent(MainActivity.this,RegistroExtraActivity.class);
+                                            intent.putExtra("idUser",idUser);
+                                            startActivity(intent);
+                                            finish();
+                                        }
+                                    }
+                                }
+                            });
                 }
                 else
                 {

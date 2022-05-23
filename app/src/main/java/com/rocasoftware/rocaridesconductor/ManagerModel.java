@@ -1,12 +1,12 @@
 package com.rocasoftware.rocaridesconductor;
 
 public class ManagerModel {
-    String nombre, apellido, telefono, email, fechaRegistro, FechaUltimoLogin,cuentaActivada,sexo,estado,ciudad;
+    String nombre, apellido, telefono, email, fechaRegistro, FechaUltimoLogin,cuentaActivada,cuentaCompletada,sexo,estado,ciudad,urlImagenIne;
 
     public ManagerModel() {
     }
 
-    public ManagerModel(String nombre, String apellido, String telefono, String email, String fechaRegistro, String fechaUltimoLogin,String cuentaActivada,String sexo,String estado,String ciudad) {
+    public ManagerModel(String nombre, String apellido, String telefono, String email, String fechaRegistro, String fechaUltimoLogin,String cuentaActivada,String cuentaCompletada,String sexo,String estado,String ciudad,String urlImagenIne) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
@@ -14,9 +14,11 @@ public class ManagerModel {
         this.fechaRegistro = fechaRegistro;
         this.FechaUltimoLogin = fechaUltimoLogin;
         this.cuentaActivada = cuentaActivada;
+        this.cuentaCompletada = cuentaCompletada;
         this.sexo = sexo;
         this.estado = estado;
         this.ciudad = ciudad;
+        this.urlImagenIne = urlImagenIne;
     }
 
     public String getNombre() {
@@ -97,5 +99,21 @@ public class ManagerModel {
 
     public void setCiudad(String ciudad) {
         this.ciudad = ciudad;
+    }
+
+    public String getUrlImagenIne() {
+        return urlImagenIne;
+    }
+
+    public void setUrlImagenIne(String urlImagenIne) {
+        this.urlImagenIne = urlImagenIne;
+    }
+
+    public String getCuentaCompletada() {
+        return cuentaCompletada;
+    }
+
+    public void setCuentaCompletada(String cuentaCompletada) {
+        this.cuentaCompletada = cuentaCompletada;
     }
 }

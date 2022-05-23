@@ -38,7 +38,7 @@ public class RegistroActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference managerRef = db.collection("Managers");
-    private CollectionReference adminRef = db.collection("Admins");
+    private CollectionReference conductorRef = db.collection("Conductores");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,20 +133,15 @@ public class RegistroActivity extends AppCompatActivity {
                             String idUser = mAuth.getUid().toString();
 
                             ManagerModel manager = new ManagerModel(nombre,apellido,telefono,email,fechaRegistro,fechaUltimoLogin,cuentaActivada);
-                            managerRef.document(idUser).set(manager)
+                            managerRef.document(idUser).set(manager);
+                            String idManager = idUser;
+
+
+                            ConductorModel conductor = new ConductorModel(nombre,apellido,telefono,email,fechaRegistro,fechaUltimoLogin,cuentaActivada,esManager,idManager);
+                            conductorRef.document(idUser).set(conductor)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
-
-                                        }
-                                    });
-
-
-                            ConductorModel conductor = new ConductorModel(nombre,apellido,telefono,email,fechaRegistro,fechaUltimoLogin,cuentaActivada,esManager);
-                            managerRef.document(idUser).collection("Conductores").add(conductor)
-                                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                        @Override
-                                        public void onSuccess(DocumentReference documentReference) {
                                             FirebaseAuth.getInstance().signOut();
                                             Toast.makeText(RegistroActivity.this, "Usuario Agregado", Toast.LENGTH_SHORT).show();
                                             Intent intent = new Intent(RegistroActivity.this,LoginActivity.class);

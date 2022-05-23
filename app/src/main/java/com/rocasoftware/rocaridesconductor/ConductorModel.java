@@ -1,12 +1,12 @@
 package com.rocasoftware.rocaridesconductor;
 
 public class ConductorModel {
-    String nombre, apellido, telefono, email, fechaRegistro, FechaUltimoLogin,cuentaActivada,esManager;
+    String nombre, apellido, telefono, email, fechaRegistro, FechaUltimoLogin,cuentaActivada,esManager,idManager;
 
     public ConductorModel() {
     }
 
-    public ConductorModel(String nombre, String apellido, String telefono, String email, String fechaRegistro, String fechaUltimoLogin,String cuentaActivada,String esManager) {
+    public ConductorModel(String nombre, String apellido, String telefono, String email, String fechaRegistro, String fechaUltimoLogin,String cuentaActivada,String esManager,String idManager) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
@@ -15,6 +15,7 @@ public class ConductorModel {
         this.FechaUltimoLogin = fechaUltimoLogin;
         this.cuentaActivada = cuentaActivada;
         this.esManager = esManager;
+        this.idManager = idManager;
     }
 
     public String getNombre() {
@@ -79,6 +80,14 @@ public class ConductorModel {
 
     public void setEsManager(String esManager) {
         this.esManager = esManager;
+    }
+
+    public String getIdManager() {
+        return idManager;
+    }
+
+    public void setIdManager(String idManager) {
+        this.idManager = idManager;
     }
 }
 

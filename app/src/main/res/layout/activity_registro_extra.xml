@@ -172,15 +172,27 @@
                 android:textSize="18sp" />
 
 
+            <CheckBox
+                android:id="@+id/conductorCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="64dp"
+                android:layout_marginLeft="64dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="64dp"
+                android:layout_marginRight="64dp"
+                android:text="Usuario es conductor?.">
+
+            </CheckBox>
 
 
             <CheckBox
                 android:id="@+id/aceptoCheckBox"
                 android:layout_width="match_parent"
-                android:layout_height="87dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="64dp"
                 android:layout_marginLeft="64dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="64dp"
                 android:layout_marginRight="64dp"
                 android:text="Al proceder, acepto los Terminos y Condiciones y reconosco que he leido las politicas de privacidad.">

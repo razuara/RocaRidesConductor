@@ -18,6 +18,9 @@
         android:theme="@style/Theme.RocaRidesConductor"
         tools:targetApi="31">
         <activity
+            android:name=".ConductoresRegistroActivity"
+            android:exported="false" />
+        <activity
             android:name=".RegistroExtraActivity"
             android:exported="false" />
         <activity

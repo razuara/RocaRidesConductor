@@ -29,6 +29,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -53,13 +54,14 @@ import io.grpc.Compressor;
 
 public class RegistroExtraActivity extends AppCompatActivity {
     private Button fotoIneButton;
-    private CheckBox aceptoCheckBox;
+    private CheckBox aceptoCheckBox,conductorCheckBox;
     private Button registrarButton;
     private Spinner sexoSpinner,estadoSpinner,ciudadSpinner;
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference managerRef = db.collection("Managers");
+    private CollectionReference conductoresRef = db.collection("Conductores");
     private CollectionReference sexoRef = db.collection("Sexo");
     private CollectionReference estadosRef = db.collection("Estados");
 
@@ -77,6 +79,7 @@ public class RegistroExtraActivity extends AppCompatActivity {
         ciudadSpinner = findViewById(R.id.ciudadSpinner);
         fotoIneButton = findViewById(R.id.fotoIneButton);
         aceptoCheckBox = findViewById(R.id.aceptoCheckBox);
+        conductorCheckBox = findViewById(R.id.conductorCheckBox);
         registrarButton = findViewById(R.id.registrarButton);
 
         registrarButton.setEnabled(false);
@@ -186,6 +189,16 @@ public class RegistroExtraActivity extends AppCompatActivity {
     {
         String randomKey = UUID.randomUUID().toString();
         String idUser = mAuth.getUid().toString();
+        String esConductor;
+
+        if(conductorCheckBox.isChecked())
+        {
+            esConductor = "Si";
+        }
+        else
+        {
+            esConductor="No";
+        }
 
         Map<String,Object> actualizador = new HashMap<>();
         actualizador.put("sexo",sexo);
@@ -193,8 +206,34 @@ public class RegistroExtraActivity extends AppCompatActivity {
         actualizador.put("ciudad",ciudad);
         actualizador.put("urlImagenIne",randomKey);
         actualizador.put("cuentaCompletada","Si");
+        actualizador.put("cuentaEsConductor",esConductor);
         actualizador.put("fechaRegistro",getTimeDate());
         actualizador.put("fechaUltimoLogin",getTimeDate());
+
+        if (esConductor.equals("Si"))
+        {
+
+            managerRef.document(idUser).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    if (documentSnapshot.exists())
+                    {
+                        String nombre,apellido,telefono,email;
+                        nombre = documentSnapshot.getString("nombre");
+                        apellido = documentSnapshot.getString("apellido");
+                        telefono = documentSnapshot.getString("telefono");
+                        email = documentSnapshot.getString("email");
+
+                        ConductorModel conductor = new ConductorModel(nombre,apellido,telefono,email,getTimeDate(),getTimeDate(),"No","No","Si",idUser,sexo,estado,ciudad);
+                        conductoresRef.document(idUser).set(conductor);
+                    }
+                }
+            });
+
+
+        }
+
+
 
         if (fotoIneButton.getText().toString().equals("Foto Seleccionada"))
         {

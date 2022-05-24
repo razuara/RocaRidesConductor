@@ -137,6 +137,7 @@ public class RegistroActivity extends AppCompatActivity {
                             String cuentaActivada = "No";
                             String cuentaCompletada = "No";
                             String esManager = "Si";
+                            String esConductor = "No";
                             String sexo = "";
                             String estado = "";
                             String ciudad = "";
@@ -144,7 +145,7 @@ public class RegistroActivity extends AppCompatActivity {
 
                             String idUser = mAuth.getUid().toString();
 
-                            ManagerModel manager = new ManagerModel(nombre,apellido,telefono,email,fechaRegistro,fechaUltimoLogin,cuentaActivada,cuentaCompletada,sexo,estado,ciudad,urlImagenIne);
+                            ManagerModel manager = new ManagerModel(nombre,apellido,telefono,email,fechaRegistro,fechaUltimoLogin,cuentaActivada,cuentaCompletada,esConductor,sexo,estado,ciudad,urlImagenIne);
                             managerRef.document(idUser).set(manager).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void unused) {

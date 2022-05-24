@@ -119,6 +119,50 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/vehiculosCardView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                app:cardCornerRadius="15dp"
+                app:cardPreventCornerOverlap="true">
+
+                <RelativeLayout
+                    android:layout_width="400dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/background_card"
+                    android:minHeight="100dp"
+                    android:padding="10dp">
+
+
+                    <ImageView
+                        android:id="@+id/vehiculosImage"
+                        android:layout_width="78dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginRight="20dp"
+                        android:adjustViewBounds="true"
+                        android:cropToPadding="true"
+                        android:maxHeight="90dp"
+                        android:src="@drawable/vehiculos" />
+
+                    <TextView
+                        android:id="@+id/textViewSub3Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_centerInParent="true"
+                        android:layout_toRightOf="@+id/vehiculosImage"
+                        android:fontFamily="@font/abel"
+                        android:text="Vehiculos"
+                        android:textSize="20sp" />
+
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
                 android:id="@+id/logoutCardView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

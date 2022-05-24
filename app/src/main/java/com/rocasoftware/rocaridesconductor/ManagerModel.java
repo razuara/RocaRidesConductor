@@ -1,12 +1,12 @@
 package com.rocasoftware.rocaridesconductor;
 
 public class ManagerModel {
-    String nombre, apellido, telefono, email, fechaRegistro, FechaUltimoLogin,cuentaActivada,cuentaCompletada,sexo,estado,ciudad,urlImagenIne;
+    String nombre, apellido, telefono, email, fechaRegistro, FechaUltimoLogin,cuentaActivada,cuentaCompletada,cuentaEsConductor,sexo,estado,ciudad,urlImagenIne;
 
     public ManagerModel() {
     }
 
-    public ManagerModel(String nombre, String apellido, String telefono, String email, String fechaRegistro, String fechaUltimoLogin,String cuentaActivada,String cuentaCompletada,String sexo,String estado,String ciudad,String urlImagenIne) {
+    public ManagerModel(String nombre, String apellido, String telefono, String email, String fechaRegistro, String fechaUltimoLogin,String cuentaActivada,String cuentaCompletada,String cuentaEsConductor,String sexo,String estado,String ciudad,String urlImagenIne) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
@@ -15,6 +15,7 @@ public class ManagerModel {
         this.FechaUltimoLogin = fechaUltimoLogin;
         this.cuentaActivada = cuentaActivada;
         this.cuentaCompletada = cuentaCompletada;
+        this.cuentaEsConductor = cuentaEsConductor;
         this.sexo = sexo;
         this.estado = estado;
         this.ciudad = ciudad;
@@ -115,5 +116,13 @@ public class ManagerModel {
 
     public void setCuentaCompletada(String cuentaCompletada) {
         this.cuentaCompletada = cuentaCompletada;
+    }
+
+    public String getCuentaEsConductor() {
+        return cuentaEsConductor;
+    }
+
+    public void setCuentaEsConductor(String cuentaEsConductor) {
+        this.cuentaEsConductor = cuentaEsConductor;
     }
 }

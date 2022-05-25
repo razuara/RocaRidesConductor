@@ -155,15 +155,6 @@ public class RegistroExtraActivity extends AppCompatActivity {
         }
     }
 
-    private void subirFoto(String randomKey)
-    {
-
-
-
-
-
-    }
-
     private void validate()
     {
         String sexo = sexoSpinner.getSelectedItem().toString();
@@ -224,8 +215,8 @@ public class RegistroExtraActivity extends AppCompatActivity {
                         telefono = documentSnapshot.getString("telefono");
                         email = documentSnapshot.getString("email");
 
-                        ConductorModel conductor = new ConductorModel(nombre,apellido,telefono,email,getTimeDate(),getTimeDate(),"No","No","Si",idUser,sexo,estado,ciudad);
-                        conductoresRef.document(idUser).set(conductor);
+                        //ConductorModel conductor = new ConductorModel(nombre,apellido,telefono,email,getTimeDate(),getTimeDate(),"No","No","Si",idUser,sexo,estado,ciudad);
+                        //conductoresRef.document(idUser).set(conductor);
                     }
                 }
             });

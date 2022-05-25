@@ -1,12 +1,12 @@
 package com.rocasoftware.rocaridesconductor;
 
 public class ConductorModel {
-    String nombre, apellido, telefono, email, fechaRegistro, FechaUltimoLogin,cuentaActivada,cuentaCompletada,esManager,idManager,sexo,estado,ciudad;
+    String nombre, apellido, telefono, email, fechaRegistro, FechaUltimoLogin,cuentaActivada,esManager,idManager,sexo,estado,ciudad,urlImagenFotoPerfil,urlImagenFotoLicencia;
 
     public ConductorModel() {
     }
 
-    public ConductorModel(String nombre, String apellido, String telefono, String email, String fechaRegistro, String fechaUltimoLogin,String cuentaActivada,String cuentaCompletada,String esManager,String idManager,String sexo,String estado,String ciudad) {
+    public ConductorModel(String nombre, String apellido, String telefono, String email, String fechaRegistro, String fechaUltimoLogin,String cuentaActivada,String esManager,String idManager,String sexo,String estado,String ciudad,String urlImagenFotoPerfil,String urlImagenFotoLicencia) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
@@ -14,12 +14,13 @@ public class ConductorModel {
         this.fechaRegistro = fechaRegistro;
         this.FechaUltimoLogin = fechaUltimoLogin;
         this.cuentaActivada = cuentaActivada;
-        this.cuentaCompletada = cuentaCompletada;
         this.esManager = esManager;
         this.idManager = idManager;
         this.sexo = sexo;
         this.estado = estado;
         this.ciudad = ciudad;
+        this.urlImagenFotoPerfil = urlImagenFotoPerfil;
+        this.urlImagenFotoLicencia = urlImagenFotoLicencia;
     }
 
     public String getNombre() {
@@ -118,12 +119,20 @@ public class ConductorModel {
         this.ciudad = ciudad;
     }
 
-    public String getCuentaCompletada() {
-        return cuentaCompletada;
+    public String getUrlImagenFotoPerfil() {
+        return urlImagenFotoPerfil;
     }
 
-    public void setCuentaCompletada(String cuentaCompletada) {
-        this.cuentaCompletada = cuentaCompletada;
+    public void setUrlImagenFotoPerfil(String urlImagenFotoPerfil) {
+        this.urlImagenFotoPerfil = urlImagenFotoPerfil;
+    }
+
+    public String getUrlImagenFotoLicencia() {
+        return urlImagenFotoLicencia;
+    }
+
+    public void setUrlImagenFotoLicencia(String urlImagenFotoLicencia) {
+        this.urlImagenFotoLicencia = urlImagenFotoLicencia;
     }
 }
 

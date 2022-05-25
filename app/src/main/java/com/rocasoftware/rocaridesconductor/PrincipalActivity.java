@@ -6,19 +6,21 @@ import androidx.cardview.widget.CardView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
 public class PrincipalActivity extends AppCompatActivity {
+    TextView nombreCompletoTextView;
     CardView conductoresCardView,logoutCardView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
 
+        nombreCompletoTextView = findViewById(R.id.nombreCompletoTextView);
         conductoresCardView = findViewById(R.id.conductoresCardView);
         logoutCardView = findViewById(R.id.logoutCardView);
-
 
         conductoresCardView.setOnClickListener(new View.OnClickListener() {
             @Override

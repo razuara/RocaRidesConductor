@@ -48,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference conductorRef = db.collection("Conductores");
     private CollectionReference managerRef = db.collection("Managers");
 
     @Override
@@ -154,40 +155,46 @@ public class LoginActivity extends AppCompatActivity {
                                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                                         if (documentSnapshot.exists())
                                         {
+                                            Map<String,Object> actualizador = new HashMap<>();
+                                            actualizador.put("fechaUltimoLogin",getTimeDate());
 
-                                            ManagerModel manager = documentSnapshot.toObject(ManagerModel.class);
-                                            String cuentaCompletada = manager.getCuentaCompletada();
-                                            if (cuentaCompletada.equals("Si"))
-                                            {
-                                                Map<String,Object> actualizador = new HashMap<>();
-                                                actualizador.put("fechaUltimoLogin",getTimeDate());
-
-                                                managerRef.document(idUser).update(actualizador);
-
-                                                accesoButton.setClickable(true);
-                                                accesoButton.setText("Acceso");
-                                                Intent intent = new Intent(LoginActivity.this,PrincipalActivity.class);
-                                                intent.putExtra("idUser",idUser);
-                                                startActivity(intent);
-                                                finish();
-                                            }
-                                            else
-                                            {
-                                                accesoButton.setClickable(true);
-                                                accesoButton.setText("Acceso");
-                                                Intent intent = new Intent(LoginActivity.this,RegistroExtraActivity.class);
-                                                intent.putExtra("idUser",idUser);
-                                                startActivity(intent);
-                                                finish();
-                                            }
+                                            managerRef.document(idUser).update(actualizador);
+                                            accesoButton.setClickable(true);
+                                            accesoButton.setText("Acceso");
+                                            Intent intent = new Intent(LoginActivity.this,PrincipalActivity.class);
+                                            intent.putExtra("idUser",idUser);
+                                            startActivity(intent);
+                                            finish();
                                         }
                                         else
                                         {
-                                            FirebaseAuth.getInstance().signOut();
-                                            accesoButton.setClickable(true);
-                                            accesoButton.setText("Acceso");
-                                            Toast.makeText(LoginActivity.this, "Usuario no es Conductor", Toast.LENGTH_SHORT).show();
-                                            //aqui se verifica si no es manager, que sea solo conductor
+                                            conductorRef.document(idUser).get()
+                                                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                                    @Override
+                                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                                        if (documentSnapshot.exists())
+                                                        {
+                                                            Map<String,Object> actualizador = new HashMap<>();
+                                                            actualizador.put("fechaUltimoLogin",getTimeDate());
+
+                                                            conductorRef.document(idUser).update(actualizador);
+                                                            accesoButton.setClickable(true);
+                                                            accesoButton.setText("Acceso");
+                                                            Intent intent = new Intent(LoginActivity.this,PrincipalActivity.class);
+                                                            intent.putExtra("idUser",idUser);
+                                                            startActivity(intent);
+                                                            finish();
+                                                        }
+                                                        else
+                                                        {
+                                                            FirebaseAuth.getInstance().signOut();
+                                                            accesoButton.setClickable(true);
+                                                            accesoButton.setText("Acceso");
+                                                            Toast.makeText(LoginActivity.this, "Usuario no es Conductor", Toast.LENGTH_SHORT).show();
+                                                            //aqui se verifica si no es manager, que sea solo conductor
+                                                        }
+                                                    }
+                                                });
                                         }
                                     }
                                 });

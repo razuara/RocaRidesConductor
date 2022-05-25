@@ -125,7 +125,7 @@
                 android:background="@drawable/background_edittext"
                 android:ems="10"
                 android:hint="Telefono"
-                android:inputType="textPhonetic"
+                android:inputType="phone"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:textColor="#ffffff"

@@ -248,13 +248,12 @@ public class ConductoresRegistroActivity extends AppCompatActivity {
                             String fechaRegistro = getTimeDate();
                             String fechaUltimoLogin = getTimeDate();
                             String cuentaActivada = "No";
-                            String esManager = "No";
                             String idManager = idUser;
 
                             String urlImagenFotoPerfil = randomKeyPerfil;
                             String urlImagenFotoLicencia = randomKeyLicencia;
 
-                            ConductorModel conductor = new ConductorModel(nombre,apellido,telefono,email,fechaRegistro,fechaUltimoLogin,cuentaActivada,esManager,idManager,sexo,estado,ciudad,urlImagenFotoPerfil,urlImagenFotoLicencia);
+                            ConductorModel conductor = new ConductorModel(nombre,apellido,telefono,email,fechaRegistro,fechaUltimoLogin,cuentaActivada,idManager,sexo,estado,ciudad,urlImagenFotoPerfil,urlImagenFotoLicencia);
 
                             conductoresRef.document(idNewUser).set(conductor)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {

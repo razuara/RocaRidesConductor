@@ -1,12 +1,12 @@
 package com.rocasoftware.rocaridesconductor;
 
 public class ConductorModel {
-    String nombre, apellido, telefono, email, fechaRegistro, FechaUltimoLogin,cuentaActivada,esManager,idManager,sexo,estado,ciudad,urlImagenFotoPerfil,urlImagenFotoLicencia;
+    String nombre, apellido, telefono, email, fechaRegistro, FechaUltimoLogin,cuentaActivada,idManager,sexo,estado,ciudad,urlImagenFotoPerfil,urlImagenFotoLicencia;
 
     public ConductorModel() {
     }
 
-    public ConductorModel(String nombre, String apellido, String telefono, String email, String fechaRegistro, String fechaUltimoLogin,String cuentaActivada,String esManager,String idManager,String sexo,String estado,String ciudad,String urlImagenFotoPerfil,String urlImagenFotoLicencia) {
+    public ConductorModel(String nombre, String apellido, String telefono, String email, String fechaRegistro, String fechaUltimoLogin,String cuentaActivada,String idManager,String sexo,String estado,String ciudad,String urlImagenFotoPerfil,String urlImagenFotoLicencia) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
@@ -14,7 +14,6 @@ public class ConductorModel {
         this.fechaRegistro = fechaRegistro;
         this.FechaUltimoLogin = fechaUltimoLogin;
         this.cuentaActivada = cuentaActivada;
-        this.esManager = esManager;
         this.idManager = idManager;
         this.sexo = sexo;
         this.estado = estado;
@@ -79,13 +78,6 @@ public class ConductorModel {
         this.cuentaActivada = cuentaActivada;
     }
 
-    public String getEsManager() {
-        return esManager;
-    }
-
-    public void setEsManager(String esManager) {
-        this.esManager = esManager;
-    }
 
     public String getIdManager() {
         return idManager;

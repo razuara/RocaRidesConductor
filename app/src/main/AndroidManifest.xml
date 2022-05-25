@@ -25,10 +25,6 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".RegistroExtraActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".PrivacidadActivity"
             android:exported="false"
             android:screenOrientation="portrait" />

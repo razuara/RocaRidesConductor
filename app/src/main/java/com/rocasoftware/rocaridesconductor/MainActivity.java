@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference conductorRef = db.collection("Conductores");
     private CollectionReference managerRef = db.collection("Managers");
     private final int DURACION_SPLASH = 3000;
     @Override
@@ -53,33 +55,42 @@ public class MainActivity extends AppCompatActivity {
                                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                                     if (documentSnapshot.exists())
                                     {
-                                        ManagerModel manager = documentSnapshot.toObject(ManagerModel.class);
-                                        String cuentaCompletada = manager.getCuentaCompletada();
-                                        if (cuentaCompletada.equals("Si"))
-                                        {
-                                            Map<String,Object> actualizador = new HashMap<>();
-                                            actualizador.put("fechaUltimoLogin",getTimeDate());
+                                        Map<String,Object> actualizador = new HashMap<>();
+                                        actualizador.put("fechaUltimoLogin",getTimeDate());
 
-                                            managerRef.document(idUser).update(actualizador);
+                                        managerRef.document(idUser).update(actualizador);
 
-                                            Intent intent = new Intent(MainActivity.this,PrincipalActivity.class);
-                                            intent.putExtra("idUser",idUser);
-                                            startActivity(intent);
-                                            finish();
-                                        }
-                                        else
-                                        {
-                                            Intent intent = new Intent(MainActivity.this,RegistroExtraActivity.class);
-                                            intent.putExtra("idUser",idUser);
-                                            startActivity(intent);
-                                            finish();
-                                        }
+                                        Intent intent = new Intent(MainActivity.this,PrincipalActivity.class);
+                                        intent.putExtra("idUser",idUser);
+                                        startActivity(intent);
+                                        finish();
                                     }
                                     else
                                     {
-                                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                                        startActivity(intent);
-                                        finish();
+                                        conductorRef.document(idUser).get()
+                                                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                                    @Override
+                                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                                        if (documentSnapshot.exists())
+                                                        {
+                                                            Map<String,Object> actualizador = new HashMap<>();
+                                                            actualizador.put("fechaUltimoLogin",getTimeDate());
+
+                                                            conductorRef.document(idUser).update(actualizador);
+                                                            Intent intent = new Intent(MainActivity.this,PrincipalActivity.class);
+                                                            intent.putExtra("idUser",idUser);
+                                                            startActivity(intent);
+                                                            finish();
+                                                        }
+                                                        else
+                                                        {
+                                                            FirebaseAuth.getInstance().signOut();
+                                                            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                                                            startActivity(intent);
+                                                            finish();
+                                                        }
+                                                    }
+                                                });
                                     }
                                 }
                             }).addOnFailureListener(new OnFailureListener() {

@@ -1,16 +1,17 @@
 package com.rocasoftware.rocaridesconductor;
 
 public class ConductorModel {
-    String nombre, apellido, telefono, email, fechaRegistro, FechaUltimoLogin,cuentaActivada,idManager,sexo,estado,ciudad,urlImagenFotoPerfil,urlImagenFotoLicencia;
+    String nombre, apellido, telefono, email,password, fechaRegistro, FechaUltimoLogin,cuentaActivada,idManager,sexo,estado,ciudad,urlImagenFotoPerfil,urlImagenFotoLicencia;
 
     public ConductorModel() {
     }
 
-    public ConductorModel(String nombre, String apellido, String telefono, String email, String fechaRegistro, String fechaUltimoLogin,String cuentaActivada,String idManager,String sexo,String estado,String ciudad,String urlImagenFotoPerfil,String urlImagenFotoLicencia) {
+    public ConductorModel(String nombre, String apellido, String telefono, String email,String password, String fechaRegistro, String fechaUltimoLogin,String cuentaActivada,String idManager,String sexo,String estado,String ciudad,String urlImagenFotoPerfil,String urlImagenFotoLicencia) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
         this.email = email;
+        this.password = password;
         this.fechaRegistro = fechaRegistro;
         this.FechaUltimoLogin = fechaUltimoLogin;
         this.cuentaActivada = cuentaActivada;
@@ -125,6 +126,14 @@ public class ConductorModel {
 
     public void setUrlImagenFotoLicencia(String urlImagenFotoLicencia) {
         this.urlImagenFotoLicencia = urlImagenFotoLicencia;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
 

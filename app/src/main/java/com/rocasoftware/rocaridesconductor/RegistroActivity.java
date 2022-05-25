@@ -257,7 +257,7 @@ public class RegistroActivity extends AppCompatActivity {
                             String urlImagenFotoLicencia = randomKeyLicencia;
 
                             ManagerModel manager = new ManagerModel(nombre,apellido,telefono,email,fechaRegistro,fechaUltimoLogin,cuentaActivada,sexo,estado,ciudad,urlImagenFotoPerfil,urlImagenFotoLicencia);
-                            ConductorModel conductor = new ConductorModel(nombre,apellido,telefono,email,fechaRegistro,fechaUltimoLogin,cuentaActivada,idManager,sexo,estado,ciudad,urlImagenFotoPerfil,urlImagenFotoLicencia);
+                            ConductorModel conductor = new ConductorModel(nombre,apellido,telefono,email,password,fechaRegistro,fechaUltimoLogin,cuentaActivada,idManager,sexo,estado,ciudad,urlImagenFotoPerfil,urlImagenFotoLicencia);
 
                             managerRef.document(idNewUser).set(manager)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {

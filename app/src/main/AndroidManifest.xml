@@ -19,7 +19,8 @@
         tools:targetApi="31">
         <activity
             android:name=".ConductoresEditarActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ConductoresRegistroActivity"
             android:exported="false"

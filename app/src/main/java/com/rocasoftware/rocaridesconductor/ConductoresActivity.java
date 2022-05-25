@@ -75,7 +75,7 @@ public class ConductoresActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                //cargarListaBuscar();
+                cargarListaBuscar();
             }
 
             @Override
@@ -94,6 +94,72 @@ public class ConductoresActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void cargarListaBuscar()
+    {
+        String busqueda = buscarEditView.getText().toString().trim();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String idUser = user.getUid();
+        Query query;
+
+        if (busqueda.equals(""))
+        {
+            query = conductorRef.orderBy("nombre").whereEqualTo("idManager",idUser);
+        }
+        else
+        {
+            query = conductorRef.orderBy("nombre").whereEqualTo("idManager",idUser).startAt(busqueda).endAt(busqueda + "\uf8ff");
+        }
+
+        FirestoreRecyclerOptions<ConductorModel> options = new FirestoreRecyclerOptions.Builder<ConductorModel>()
+                .setQuery(query,ConductorModel.class)
+                .build();
+
+        adapter = new FirestoreRecyclerAdapter<ConductorModel, ConductoresViewHolder>(options) {
+            @NonNull
+            @Override
+            public ConductoresViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.conductor_item,parent,false);
+                return new ConductoresViewHolder(view);
+            }
+
+            @Override
+            protected void onBindViewHolder(@NonNull ConductoresViewHolder holder, int position, @NonNull ConductorModel model) {
+                StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+                StorageReference photoReference= storageReference.child("documentos/Perfiles/"+model.urlImagenFotoPerfil);
+
+                final long ONE_MEGABYTE = 1024 * 1024;
+                photoReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                    @Override
+                    public void onSuccess(byte[] bytes) {
+                        Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                        holder.fotoPerfilImageView.setImageBitmap(bmp);
+
+                    }
+                });
+
+                holder.nombreTextView.setText(model.getNombre() + " " + model.getApellido());
+                holder.telefonoTextView.setText(model.getTelefono());
+                holder.correoTextView.setText(model.getEmail());
+
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DocumentSnapshot snapshot = getSnapshots().getSnapshot(holder.getAbsoluteAdapterPosition());
+                        String idDocumento = snapshot.getId();
+                        Intent intent = new Intent(ConductoresActivity.this, ConductoresEditarActivity.class);
+                        intent.putExtra("idDocumento",idDocumento);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+            }
+        };
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
+        adapter.startListening();
+    }
+
 
     private void cargarLista()
     {

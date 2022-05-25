@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Patterns;
 import android.view.View;
@@ -59,7 +60,6 @@ public class ConductoresRegistroActivity extends AppCompatActivity {
 
     final private FirebaseApp VerifierApp = FirebaseApp.initializeApp(defaultApp.getApplicationContext(),defaultApp.getOptions(),"Verifier");
     final private FirebaseAuth mAuth2 = FirebaseAuth.getInstance(VerifierApp);
-
 
     private CollectionReference conductoresRef = db.collection("Conductores");
     private CollectionReference sexoRef = db.collection("Sexo");
@@ -253,7 +253,7 @@ public class ConductoresRegistroActivity extends AppCompatActivity {
                             String urlImagenFotoPerfil = randomKeyPerfil;
                             String urlImagenFotoLicencia = randomKeyLicencia;
 
-                            ConductorModel conductor = new ConductorModel(nombre,apellido,telefono,email,fechaRegistro,fechaUltimoLogin,cuentaActivada,idManager,sexo,estado,ciudad,urlImagenFotoPerfil,urlImagenFotoLicencia);
+                            ConductorModel conductor = new ConductorModel(nombre,apellido,telefono,email,password,fechaRegistro,fechaUltimoLogin,cuentaActivada,idManager,sexo,estado,ciudad,urlImagenFotoPerfil,urlImagenFotoLicencia);
 
                             conductoresRef.document(idNewUser).set(conductor)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -290,12 +290,19 @@ public class ConductoresRegistroActivity extends AppCompatActivity {
                                                             .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                                                 @Override
                                                                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                                                    pd.dismiss();
-                                                                    VerifierApp.delete();
-                                                                    Toast.makeText(ConductoresRegistroActivity.this, "Usuario Actualizado Correctamente", Toast.LENGTH_SHORT).show();
-                                                                    Intent intent = new Intent(ConductoresRegistroActivity.this,ConductoresActivity.class);
-                                                                    startActivity(intent);
-                                                                    finish();
+                                                                    fotoLicencia.putBytes(imageByte2);
+                                                                    Handler handler = new Handler();
+                                                                    handler.postDelayed(new Runnable() {
+                                                                        public void run() {
+                                                                            pd.dismiss();
+                                                                            VerifierApp.delete();
+                                                                            Toast.makeText(ConductoresRegistroActivity.this, "Usuario Actualizado Correctamente", Toast.LENGTH_SHORT).show();
+                                                                            Intent intent = new Intent(ConductoresRegistroActivity.this,ConductoresActivity.class);
+                                                                            startActivity(intent);
+                                                                            finish();
+                                                                        }
+                                                                    }, 3000);   //3 seconds
+
                                                                 }
                                                             }).addOnFailureListener(new OnFailureListener() {
                                                                 @Override
@@ -304,7 +311,7 @@ public class ConductoresRegistroActivity extends AppCompatActivity {
                                                                 }
                                                             });
 
-                                                    fotoLicencia.putBytes(imageByte2);
+
 
 
                                                 }
@@ -437,6 +444,7 @@ public class ConductoresRegistroActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        VerifierApp.delete();
         Intent intent = new Intent(ConductoresRegistroActivity.this,ConductoresActivity.class);
         startActivity(intent);
         finish();

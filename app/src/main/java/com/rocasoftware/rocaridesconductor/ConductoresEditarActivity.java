@@ -2,9 +2,11 @@ package com.rocasoftware.rocaridesconductor;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -25,6 +27,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+
+import com.google.firebase.auth.FirebaseUser;
+
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -51,7 +58,15 @@ public class ConductoresEditarActivity extends AppCompatActivity {
     private Button actualizarButton,borrarButton,fotoPerfilButton,fotoLicenciaButton;
 
 
+    private FirebaseApp defaultApp = FirebaseApp.getInstance();
+    private FirebaseAuth mAuth;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private String idUser = user.getUid();
+
+    final private FirebaseApp VerifierApp = FirebaseApp.initializeApp(defaultApp.getApplicationContext(),defaultApp.getOptions(),"Verifier");
+    final private FirebaseAuth mAuth2 = FirebaseAuth.getInstance(VerifierApp);
+
     private CollectionReference conductorRef = db.collection("Conductores");
     private CollectionReference sexoRef = db.collection("Sexo");
     private CollectionReference estadosRef = db.collection("Estados");
@@ -65,6 +80,8 @@ public class ConductoresEditarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conductores_editar);
+
+        mAuth = FirebaseAuth.getInstance();
 
         nombreEditText = findViewById(R.id.nombreEditText);
         apellidoEditText = findViewById(R.id.apellidoEditText);
@@ -124,9 +141,90 @@ public class ConductoresEditarActivity extends AppCompatActivity {
         borrarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //CreateAlertDialog();
+                CreateAlertDialog();
             }
         });
+    }
+
+    private void CreateAlertDialog()
+    {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setMessage("Seguro que quieres borrar este registro?");
+        dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                String idDocumento = getIntent().getStringExtra("idDocumento");
+
+                conductorRef.document(idDocumento).get()
+                                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                        if (documentSnapshot.exists())
+                                        {
+                                            ProgressDialog pd3 = new ProgressDialog(ConductoresEditarActivity.this);
+                                            pd3.setTitle("Borrando Conductor");
+                                            pd3.setMessage("Espere un momento....");
+                                            pd3.setIndeterminate(true);
+                                            pd3.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                                            pd3.show();
+
+                                            ConductorModel conductor = documentSnapshot.toObject(ConductorModel.class);
+                                            String urlImagenFotoPerfil = conductor.getUrlImagenFotoPerfil();
+                                            String urlImagenFotoLicencia = conductor.getUrlImagenFotoLicencia();
+                                            String email = conductor.getEmail();
+                                            String password = conductor.getPassword();
+
+
+                                            StorageReference fotoPerfil = storageReference.child("documentos/Perfiles/" + urlImagenFotoPerfil);
+                                            StorageReference fotoLicencia = storageReference.child("documentos/Licencias/" + urlImagenFotoLicencia);
+
+                                            fotoPerfil.delete();
+                                            fotoLicencia.delete();
+
+                                            mAuth2.signInWithEmailAndPassword(email, password);
+                                            mAuth2.getCurrentUser().delete();
+
+
+
+                                            conductorRef.document(idDocumento).delete()
+                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                        @Override
+                                                        public void onSuccess(Void unused) {
+                                                            Handler handler = new Handler();
+                                                            handler.postDelayed(new Runnable() {
+                                                                public void run() {
+                                                                    VerifierApp.delete();
+                                                                    Toast.makeText(ConductoresEditarActivity.this, "Registro Borrado Correctamente", Toast.LENGTH_SHORT).show();
+                                                                    Intent intent = new Intent(ConductoresEditarActivity.this,ConductoresActivity.class);
+                                                                    startActivity(intent);
+                                                                    finish();
+                                                                }
+                                                            }, 3000);   //3 seconds
+
+                                                        }
+                                                    })
+                                                    .addOnFailureListener(new OnFailureListener() {
+                                                        @Override
+                                                        public void onFailure(@NonNull Exception e) {
+                                                            Toast.makeText(ConductoresEditarActivity.this, "Error al Borrar Registro", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    });
+
+                                        }
+                                    }
+                                });
+
+
+            }
+        });
+        dialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(ConductoresEditarActivity.this, "Proceso Cancelado", Toast.LENGTH_SHORT).show();
+            }
+        });
+        dialog.create();
+        dialog.show();
     }
 
     private void seleccionarFotoPerfil()
@@ -343,6 +441,7 @@ public class ConductoresEditarActivity extends AppCompatActivity {
                         Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             public void run() {
+                                VerifierApp.delete();
                                 Toast.makeText(ConductoresEditarActivity.this, "Registro Actualizado Correctamente", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(ConductoresEditarActivity.this,ConductoresActivity.class);
                                 startActivity(intent);
@@ -573,6 +672,7 @@ public class ConductoresEditarActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        VerifierApp.delete();
         Intent intent = new Intent(ConductoresEditarActivity.this,ConductoresActivity.class);
         startActivity(intent);
         finish();

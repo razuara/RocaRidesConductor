@@ -1,9 +1,300 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ConductoresEditarActivity">
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/myToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background2">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/tituloimageView"
+                android:layout_width="47dp"
+                android:layout_height="59dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@mipmap/conductor" />
+
+            <TextView
+                android:id="@+id/nombreAppTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="30dp"
+                android:layout_toRightOf="@+id/tituloimageView"
+                android:text="@string/app_name"
+                android:textColor="#ffffff"
+                android:textSize="25sp"
+                android:textStyle="bold"></TextView>
+
+            <TextView
+                android:id="@+id/subtituloTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nombreAppTextView"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_toEndOf="@+id/tituloimageView"
+                android:text="Editar de Conductor"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="593dp"
+        android:background="@drawable/background2"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="473dp"
+            android:layout_weight="0.7"
+            android:background="@drawable/background2"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/nombreEditText"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginStart="64dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="64dp"
+                android:background="@drawable/background_edittext"
+                android:ems="10"
+                android:hint="Nombre(s)"
+                android:inputType="textPersonName"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textColor="#ffffff"
+                android:textColorHint="#ffffff"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nombreAppTextView" />
+
+            <EditText
+                android:id="@+id/apellidoEditText"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginStart="64dp"
+                android:layout_marginLeft="64dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="64dp"
+                android:layout_marginRight="64dp"
+                android:background="@drawable/background_edittext"
+                android:ems="10"
+                android:hint="Apellido(s)"
+                android:inputType="textPersonName"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textColor="#ffffff"
+                android:textColorHint="#ffffff"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nombreEditText" />
+
+
+            <EditText
+                android:id="@+id/telefonoEditText"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginStart="64dp"
+                android:layout_marginLeft="64dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="64dp"
+                android:layout_marginRight="64dp"
+                android:background="@drawable/background_edittext"
+                android:ems="10"
+                android:hint="Telefono"
+                android:inputType="phone"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textColor="#ffffff"
+                android:textColorHint="#ffffff"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/apellidoEditText" />
+
+
+
+
+            <TextView
+                android:id="@+id/sexoTitulotextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:text="Sexo"
+                android:textSize="25sp"
+                android:layout_below="@+id/subtituloTextView"
+                android:layout_toEndOf="@+id/tituloimageView"
+                android:layout_marginLeft="64dp"
+                android:layout_marginRight="64dp"
+                android:layout_marginTop="5dp"
+                >
+
+            </TextView>
+
+            <Spinner
+                android:id="@+id/sexoSpinner"
+                android:layout_width="277dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="64dp"
+                android:layout_marginRight="64dp"
+                android:layout_toEndOf="@+id/sexoTitulotextView">
+
+            </Spinner>
+
+            <TextView
+                android:id="@+id/estadoTitulotextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:text="Estado"
+                android:textSize="25sp"
+                android:layout_below="@+id/sexoSpinner"
+                android:layout_toEndOf="@+id/tituloimageView"
+                android:layout_marginLeft="64dp"
+                android:layout_marginRight="64dp"
+                android:layout_marginTop="5dp"
+                >
+
+            </TextView>
+
+            <Spinner
+                android:id="@+id/estadoSpinner"
+                android:layout_width="277dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="64dp"
+                android:layout_marginRight="64dp"
+                android:layout_toEndOf="@+id/estadoTitulotextView">
+
+            </Spinner>
+
+            <TextView
+                android:id="@+id/ciudadTitulotextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:text="Ciudad"
+                android:textSize="25sp"
+                android:layout_below="@+id/subtituloTextView"
+                android:layout_toEndOf="@+id/tituloimageView"
+                android:layout_marginLeft="64dp"
+                android:layout_marginRight="64dp"
+                android:layout_marginTop="5dp"
+                >
+
+            </TextView>
+
+            <Spinner
+                android:id="@+id/ciudadSpinner"
+                android:layout_width="277dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="64dp"
+                android:layout_marginRight="64dp"
+                android:layout_toEndOf="@+id/sexoTitulotextView">
+
+            </Spinner>
+
+            <ImageView
+                android:id="@+id/fotoPerfilImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="149dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="64dp"
+                android:layout_marginRight="64dp"
+                android:src="@mipmap/usuario">
+
+            </ImageView>
+            <Button
+                android:id="@+id/fotoPerfilButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="64dp"
+                android:layout_marginRight="64dp"
+                android:background="@drawable/background_login_btn"
+                android:text="Cambiar Perfil"
+                android:textColor="#ffffff"
+                android:textSize="18sp" />
+
+            <ImageView
+            android:id="@+id/fotoLicenciaImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="149dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="64dp"
+            android:layout_marginRight="64dp"
+            android:src="@mipmap/usuario">
+
+            </ImageView>
+
+            <Button
+                android:id="@+id/fotoLicenciaButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="64dp"
+                android:layout_marginRight="64dp"
+                android:background="@drawable/background_login_btn"
+                android:text="Cambiar Licencia"
+                android:textColor="#ffffff"
+                android:textSize="18sp"
+                android:layout_marginBottom="20dp"/>
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/actualizarButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="64dp"
+            android:layout_marginRight="64dp"
+            android:background="@drawable/background_login_btn"
+            android:text="Actualizar"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/borrarButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="64dp"
+            android:layout_marginRight="64dp"
+            android:background="@drawable/background_login_btn"
+            android:text="Borrar"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+</LinearLayout>

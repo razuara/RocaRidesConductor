@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/myToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background2">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/tituloimageView"
+                android:layout_width="47dp"
+                android:layout_height="59dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@mipmap/conductor" />
+
+            <TextView
+                android:id="@+id/nombreAppTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="30dp"
+                android:layout_toRightOf="@+id/tituloimageView"
+                android:text="@string/app_name"
+                android:textColor="#ffffff"
+                android:textSize="25sp"
+                android:textStyle="bold"></TextView>
+
+            <TextView
+                android:id="@+id/subtituloTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nombreAppTextView"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_toEndOf="@+id/tituloimageView"
+                android:text="Registro de Vehiculos"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="593dp"
+        android:background="@drawable/background2"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="473dp"
+            android:layout_weight="0.7"
+            android:background="@drawable/background2"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/marcaTitulotextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:text="Marca"
+                android:textSize="25sp"
+                android:layout_below="@+id/subtituloTextView"
+                android:layout_toEndOf="@+id/tituloimageView"
+                android:layout_marginStart="70dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                >
+
+            </TextView>
+
+            <Spinner
+                android:id="@+id/marcaSpinner"
+                android:layout_width="277dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="70dp"
+                android:layout_toEndOf="@+id/sexoTitulotextView">
+
+            </Spinner>
+
+            <TextView
+                android:id="@+id/modeloTitulotextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:text="Modelo"
+                android:textSize="25sp"
+                android:layout_below="@+id/sexoSpinner"
+                android:layout_toEndOf="@+id/tituloimageView"
+                android:layout_marginStart="70dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                >
+
+            </TextView>
+
+            <Spinner
+                android:id="@+id/modeloSpinner"
+                android:layout_width="277dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="70dp"
+                android:layout_toEndOf="@+id/estadoTitulotextView">
+
+            </Spinner>
+
+
+            <EditText
+                android:id="@+id/añoEditText"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginStart="64dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="64dp"
+                android:background="@drawable/background_edittext"
+                android:ems="10"
+                android:hint="Año"
+                android:inputType="textPersonName"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textColor="#ffffff"
+                android:textColorHint="#ffffff"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nombreAppTextView" />
+
+            <EditText
+                android:id="@+id/colorEditText"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginStart="64dp"
+                android:layout_marginLeft="64dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="64dp"
+                android:layout_marginRight="64dp"
+                android:background="@drawable/background_edittext"
+                android:ems="10"
+                android:hint="Color"
+                android:inputType="textPersonName"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textColor="#ffffff"
+                android:textColorHint="#ffffff"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nombreEditText" />
+
+
+            <EditText
+                android:id="@+id/placasEditText"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginStart="64dp"
+                android:layout_marginLeft="64dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="64dp"
+                android:layout_marginRight="64dp"
+                android:background="@drawable/background_edittext"
+                android:ems="10"
+                android:hint="Placas"
+                android:inputType="phone"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textColor="#ffffff"
+                android:textColorHint="#ffffff"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/apellidoEditText" />
+
+
+
+
+            <TextView
+                android:id="@+id/fotoVehiculoTitulotextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:text="Foto del Vehiculo"
+                android:textSize="25sp"
+                android:layout_below="@+id/subtituloTextView"
+                android:layout_toEndOf="@+id/tituloimageView"
+                android:layout_marginStart="70dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                >
+
+            </TextView>
+
+            <Button
+                android:id="@+id/fotoVehiculoButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="64dp"
+                android:layout_marginRight="64dp"
+                android:background="@drawable/background_login_btn"
+                android:text="Seleccionar Foto"
+                android:textColor="#ffffff"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/fotoTarjetaTitulotextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:text="Tarjeta de Circulación"
+                android:textSize="25sp"
+                android:layout_below="@+id/subtituloTextView"
+                android:layout_toEndOf="@+id/tituloimageView"
+                android:layout_marginStart="70dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                >
+
+            </TextView>
+
+            <Button
+                android:id="@+id/fotoTarjetaButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="64dp"
+                android:layout_marginRight="64dp"
+                android:background="@drawable/background_login_btn"
+                android:text="Seleccionar Foto"
+                android:textColor="#ffffff"
+                android:textSize="18sp"
+                android:layout_marginBottom="20dp"/>
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/registrarButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="64dp"
+            android:layout_marginRight="64dp"
+            android:background="@drawable/background_login_btn"
+            android:text="Registrar"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+</LinearLayout>

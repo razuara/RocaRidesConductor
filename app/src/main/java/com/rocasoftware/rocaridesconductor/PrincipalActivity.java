@@ -12,7 +12,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class PrincipalActivity extends AppCompatActivity {
     TextView nombreCompletoTextView;
-    CardView conductoresCardView,logoutCardView;
+    CardView conductoresCardView,vehiculosCardView,logoutCardView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,12 +20,22 @@ public class PrincipalActivity extends AppCompatActivity {
 
         nombreCompletoTextView = findViewById(R.id.nombreCompletoTextView);
         conductoresCardView = findViewById(R.id.conductoresCardView);
+        vehiculosCardView = findViewById(R.id.vehiculosCardView);
         logoutCardView = findViewById(R.id.logoutCardView);
 
         conductoresCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PrincipalActivity.this,ConductoresActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        vehiculosCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PrincipalActivity.this,VehiculosActivity.class);
                 startActivity(intent);
                 finish();
             }

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/myToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background2">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="47dp"
+                android:layout_height="59dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@mipmap/conductor" />
+
+            <TextView
+                android:id="@+id/tituloTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="30dp"
+                android:layout_toRightOf="@+id/imageView"
+                android:text="@string/app_name"
+                android:textColor="#ffffff"
+                android:textSize="25sp"
+                android:textStyle="bold"></TextView>
+
+            <TextView
+                android:id="@+id/subtituloTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tituloTextView"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_toEndOf="@+id/imageView"
+                android:text="Vehiculos"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/buscarEditView"
+                android:layout_width="274dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/subtituloTextView"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="10dp"
+                android:layout_toEndOf="@id/imageView"
+                android:background="@drawable/background_edittext"
+                android:hint="Buscar"
+                android:inputType="textFilter"
+                android:paddingLeft="10dp"
+                android:textColor="@color/black"
+                android:textSize="25sp">
+
+            </EditText>
+
+
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="593dp"
+        android:background="@drawable/background">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/vehiculosRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="200dp"
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/registroButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="64dp"
+            android:layout_marginRight="64dp"
+            android:background="@drawable/background_login_btn"
+            android:text="agregar"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+
+
+
+
+
+</LinearLayout>

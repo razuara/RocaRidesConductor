@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="6dp"
+    android:elevation="6dp"
+    app:cardUseCompatPadding="true">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:background="@drawable/background2">
+
+        <ImageView
+            android:id="@+id/fotoVehiculoImageView"
+            android:layout_width="84dp"
+            android:layout_height="84dp"
+            android:src="@mipmap/usuario">
+
+        </ImageView>
+
+        <TextView
+            android:id="@+id/nombreTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Nombre Vehiculo"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@id/fotoVehiculoImageView">
+        </TextView>
+
+        <TextView
+            android:id="@+id/colorTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Color Vehiculo"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_toRightOf="@id/fotoVehiculoImageView"
+            android:layout_below="@id/nombreTextView">
+        </TextView>
+        <TextView
+            android:id="@+id/placasTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Placas"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_toRightOf="@id/fotoVehiculoImageView"
+            android:layout_below="@id/colorTextView">
+        </TextView>
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

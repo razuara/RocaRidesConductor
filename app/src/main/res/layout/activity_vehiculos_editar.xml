@@ -50,7 +50,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
                 android:layout_toEndOf="@+id/tituloimageView"
-                android:text="Registro de Vehiculos"
+                android:text="Editar Vehiculo"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
@@ -69,7 +69,6 @@
             android:layout_weight="0.7"
             android:background="@drawable/background2"
             android:orientation="vertical">
-
 
             <TextView
                 android:id="@+id/marcaTitulotextView"
@@ -190,48 +189,39 @@
 
 
 
-            <TextView
-                android:id="@+id/fotoVehiculoTitulotextView"
+            <ImageView
+                android:id="@+id/fotoVehiculoImageView"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="20dp"
-                android:text="Foto del Vehiculo"
-                android:textSize="25sp"
-                android:layout_below="@+id/subtituloTextView"
-                android:layout_toEndOf="@+id/tituloimageView"
-                android:layout_marginStart="70dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                >
+                android:layout_height="149dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="64dp"
+                android:layout_marginRight="64dp"
+                android:src="@mipmap/usuario">
 
-            </TextView>
-
+            </ImageView>
             <Button
                 android:id="@+id/fotoVehiculoButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="64dp"
                 android:layout_marginRight="64dp"
                 android:background="@drawable/background_login_btn"
-                android:text="Seleccionar Foto"
+                android:text="Cambiar Foto Vehiculo"
                 android:textColor="#ffffff"
                 android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/fotoTarjetaTitulotextView"
+            <ImageView
+                android:id="@+id/fotoTarjetaImageView"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="20dp"
-                android:text="Tarjeta de Circulación"
-                android:textSize="25sp"
-                android:layout_below="@+id/subtituloTextView"
-                android:layout_toEndOf="@+id/tituloimageView"
-                android:layout_marginStart="70dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                >
+                android:layout_height="149dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="64dp"
+                android:layout_marginRight="64dp"
+                android:src="@mipmap/usuario">
 
-            </TextView>
+            </ImageView>
 
             <Button
                 android:id="@+id/fotoTarjetaButton"
@@ -240,7 +230,7 @@
                 android:layout_marginLeft="64dp"
                 android:layout_marginRight="64dp"
                 android:background="@drawable/background_login_btn"
-                android:text="Seleccionar Foto"
+                android:text="Cambiar Tarjeta Ciurculación"
                 android:textColor="#ffffff"
                 android:textSize="18sp"
                 android:layout_marginBottom="20dp"/>
@@ -257,13 +247,25 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/registrarButton"
+            android:id="@+id/actualizarButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="64dp"
             android:layout_marginRight="64dp"
             android:background="@drawable/background_login_btn"
-            android:text="Registrar"
+            android:text="Actualizar"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/borrarButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="64dp"
+            android:layout_marginRight="64dp"
+            android:background="@drawable/background_login_btn"
+            android:text="Borrar"
             android:textColor="#ffffff"
             android:textSize="18sp" />
 

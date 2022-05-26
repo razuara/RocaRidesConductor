@@ -18,8 +18,10 @@
         <entry key="..\:/Users/Razuara/AndroidStudioProjects/RocaRidesConductor/app/src/main/res/layout/activity_registro_extra.xml" value="0.5" />
         <entry key="..\:/Users/Razuara/AndroidStudioProjects/RocaRidesConductor/app/src/main/res/layout/activity_terminos.xml" value="0.17798913043478262" />
         <entry key="..\:/Users/Razuara/AndroidStudioProjects/RocaRidesConductor/app/src/main/res/layout/activity_vehiculos.xml" value="0.20871327254305977" />
+        <entry key="..\:/Users/Razuara/AndroidStudioProjects/RocaRidesConductor/app/src/main/res/layout/activity_vehiculos_editar.xml" value="0.20871327254305977" />
         <entry key="..\:/Users/Razuara/AndroidStudioProjects/RocaRidesConductor/app/src/main/res/layout/activity_vehiculos_registro.xml" value="0.2018743667679838" />
         <entry key="..\:/Users/Razuara/AndroidStudioProjects/RocaRidesConductor/app/src/main/res/layout/conductor_item.xml" value="0.20871327254305977" />
+        <entry key="..\:/Users/Razuara/AndroidStudioProjects/RocaRidesConductor/app/src/main/res/layout/vehiculo_item.xml" value="0.75" />
       </map>
     </option>
   </component>

@@ -475,8 +475,8 @@ public class ConductoresEditarActivity extends AppCompatActivity {
                             String sexo = conductor.getSexo();
                             String estado = conductor.getEstado();
                             String ciudad = conductor.getCiudad();
-                            String urlImagenFotoPerfil = conductor.urlImagenFotoPerfil;
-                            String urlImagenFotoLicencia = conductor.urlImagenFotoLicencia;
+                            String urlImagenFotoPerfil = conductor.getUrlImagenFotoPerfil();
+                            String urlImagenFotoLicencia = conductor.getUrlImagenFotoLicencia();
 
                             nombreEditText.setText(nombre);
                             apellidoEditText.setText(apellido);

@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                                     if (documentSnapshot.exists())
                                     {
                                         Map<String,Object> actualizador = new HashMap<>();
-                                        actualizador.put("fechaUltimoLogin",getTimeDate());
+                                        actualizador.put("fechaUltimoLogin",getTimeStampNow());
 
                                         managerRef.document(idUser).update(actualizador);
 
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                                                         if (documentSnapshot.exists())
                                                         {
                                                             Map<String,Object> actualizador = new HashMap<>();
-                                                            actualizador.put("fechaUltimoLogin",getTimeDate());
+                                                            actualizador.put("fechaUltimoLogin",getTimeStampNow());
 
                                                             conductorRef.document(idUser).update(actualizador);
                                                             Intent intent = new Intent(MainActivity.this,PrincipalActivity.class);
@@ -113,13 +113,11 @@ public class MainActivity extends AppCompatActivity {
         }, DURACION_SPLASH);
     }
 
-    public static String getTimeDate() { // without parameter argument
+    public Date getTimeStampNow() { // without parameter argument
         try{
-            Date netDate = new Date(); // current time from here
-            SimpleDateFormat sfd = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault());
-            return sfd.format(netDate);
+            return new Date();
         } catch(Exception e) {
-            return "date";
+            return null;
         }
     }
 }

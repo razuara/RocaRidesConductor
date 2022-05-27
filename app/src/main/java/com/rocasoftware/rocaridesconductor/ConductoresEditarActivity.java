@@ -67,6 +67,7 @@ public class ConductoresEditarActivity extends AppCompatActivity {
     final private FirebaseApp VerifierApp = FirebaseApp.initializeApp(defaultApp.getApplicationContext(),defaultApp.getOptions(),"Verifier");
     final private FirebaseAuth mAuth2 = FirebaseAuth.getInstance(VerifierApp);
 
+    private CollectionReference contadorRef = db.collection("Contadores");
     private CollectionReference conductorRef = db.collection("Conductores");
     private CollectionReference sexoRef = db.collection("Sexo");
     private CollectionReference estadosRef = db.collection("Estados");
@@ -190,6 +191,8 @@ public class ConductoresEditarActivity extends AppCompatActivity {
                                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                         @Override
                                                         public void onSuccess(Void unused) {
+                                                            //contador de conductores
+                                                            contador("Conductores","-");
                                                             Handler handler = new Handler();
                                                             handler.postDelayed(new Runnable() {
                                                                 public void run() {
@@ -664,6 +667,31 @@ public class ConductoresEditarActivity extends AppCompatActivity {
 
                                 }
                             }
+                        }
+                    }
+                });
+    }
+
+    public void contador(String documento,String operador) {
+        contadorRef.document(documento).get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if(documentSnapshot.exists()) {
+                            int contadorDocumento,contadorFinal;
+                            ContadorModel contador = documentSnapshot.toObject(ContadorModel.class);
+                            contadorDocumento = contador.getContador();
+                            if (operador.equals("+"))
+                            {
+                                contadorFinal = contadorDocumento+1;
+                            }
+                            else
+                            {
+                                contadorFinal = contadorDocumento-1;
+                            }
+                            Map<String,Object> note = new HashMap<>();
+                            note.put("contador",contadorFinal);
+                            contadorRef.document(documento).update(note);
                         }
                     }
                 });

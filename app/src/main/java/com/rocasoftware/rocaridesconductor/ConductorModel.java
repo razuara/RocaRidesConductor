@@ -1,19 +1,21 @@
 package com.rocasoftware.rocaridesconductor;
 
-public class ConductorModel {
-    String nombre, apellido, telefono, email,password, fechaRegistro, FechaUltimoLogin,cuentaActivada,idManager,sexo,estado,ciudad,urlImagenFotoPerfil,urlImagenFotoLicencia;
+import java.util.Date;
 
+public class ConductorModel {
+    String nombre, apellido, telefono, email,password,cuentaActivada,idManager,sexo,estado,ciudad,urlImagenFotoPerfil,urlImagenFotoLicencia;
+    Date fechaRegistro,fechaUltimoLogin;
     public ConductorModel() {
     }
 
-    public ConductorModel(String nombre, String apellido, String telefono, String email,String password, String fechaRegistro, String fechaUltimoLogin,String cuentaActivada,String idManager,String sexo,String estado,String ciudad,String urlImagenFotoPerfil,String urlImagenFotoLicencia) {
+    public ConductorModel(String nombre, String apellido, String telefono, String email,String password, Date fechaRegistro, Date fechaUltimoLogin,String cuentaActivada,String idManager,String sexo,String estado,String ciudad,String urlImagenFotoPerfil,String urlImagenFotoLicencia) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
         this.email = email;
         this.password = password;
         this.fechaRegistro = fechaRegistro;
-        this.FechaUltimoLogin = fechaUltimoLogin;
+        this.fechaUltimoLogin = fechaUltimoLogin;
         this.cuentaActivada = cuentaActivada;
         this.idManager = idManager;
         this.sexo = sexo;
@@ -53,22 +55,6 @@ public class ConductorModel {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getFechaRegistro() {
-        return fechaRegistro;
-    }
-
-    public void setFechaRegistro(String fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
-    }
-
-    public String getFechaUltimoLogin() {
-        return FechaUltimoLogin;
-    }
-
-    public void setFechaUltimoLogin(String fechaUltimoLogin) {
-        FechaUltimoLogin = fechaUltimoLogin;
     }
 
     public String getCuentaActivada() {
@@ -134,6 +120,22 @@ public class ConductorModel {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Date getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(Date fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    public Date getFechaUltimoLogin() {
+        return fechaUltimoLogin;
+    }
+
+    public void setFechaUltimoLogin(Date fechaUltimoLogin) {
+        this.fechaUltimoLogin = fechaUltimoLogin;
     }
 }
 

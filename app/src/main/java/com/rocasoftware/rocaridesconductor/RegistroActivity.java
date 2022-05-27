@@ -30,6 +30,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -44,8 +45,10 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
@@ -61,6 +64,7 @@ public class RegistroActivity extends AppCompatActivity {
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
 
+    private CollectionReference contadorRef = db.collection("Contadores");
     private CollectionReference managerRef = db.collection("Managers");
     private CollectionReference conductoresRef = db.collection("Conductores");
     private CollectionReference sexoRef = db.collection("Sexo");
@@ -249,8 +253,8 @@ public class RegistroActivity extends AppCompatActivity {
 
 
                             String telefono = telefonoEditText.getText().toString().trim();
-                            String fechaRegistro = getTimeDate();
-                            String fechaUltimoLogin = getTimeDate();
+                            Date fechaRegistro = getTimeStampNow();
+                            Date fechaUltimoLogin = getTimeStampNow();
                             String cuentaActivada = "No";
                             String idManager = idUser;
                             String urlImagenFotoPerfil = randomKeyPerfil;
@@ -263,7 +267,17 @@ public class RegistroActivity extends AppCompatActivity {
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
+
+                                            //Agregar contador Managers
+                                            contador("Managers","+");
                                             conductoresRef.document(idNewUser).set(conductor)
+                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                        @Override
+                                                        public void onSuccess(Void unused) {
+                                                            //Agregar contador Conductores
+                                                            contador("Conductores","+");
+                                                        }
+                                                    })
                                                     .addOnFailureListener(new OnFailureListener() {
                                                         @Override
                                                         public void onFailure(@NonNull Exception e) {
@@ -434,14 +448,37 @@ public class RegistroActivity extends AppCompatActivity {
                 });
     }
 
-    public static String getTimeDate() { // without parameter argument
+    public Date getTimeStampNow() { // without parameter argument
         try{
-            Date netDate = new Date(); // current time from here
-            SimpleDateFormat sfd = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault());
-            return sfd.format(netDate);
+            return new Date();
         } catch(Exception e) {
-            return "date";
+            return null;
         }
+    }
+
+    public void contador(String documento,String operador) {
+        contadorRef.document(documento).get()
+            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    if(documentSnapshot.exists()) {
+                        int contadorDocumento,contadorFinal;
+                        ContadorModel contador = documentSnapshot.toObject(ContadorModel.class);
+                        contadorDocumento = contador.getContador();
+                        if (operador.equals("+"))
+                        {
+                            contadorFinal = contadorDocumento+1;
+                        }
+                        else
+                        {
+                            contadorFinal = contadorDocumento-1;
+                        }
+                        Map<String,Object> note = new HashMap<>();
+                        note.put("contador",contadorFinal);
+                        contadorRef.document(documento).update(note);
+                    }
+                }
+            });
     }
 
     @Override

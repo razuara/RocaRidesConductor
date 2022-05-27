@@ -1,18 +1,20 @@
 package com.rocasoftware.rocaridesconductor;
 
-public class ManagerModel {
-    String nombre, apellido, telefono, email, fechaRegistro, FechaUltimoLogin,cuentaActivada,sexo,estado,ciudad,urlImagenFotoPerfil,urlImagenFotoLicencia;
+import java.util.Date;
 
+public class ManagerModel {
+    String nombre, apellido, telefono, email,cuentaActivada,sexo,estado,ciudad,urlImagenFotoPerfil,urlImagenFotoLicencia;
+    Date fechaRegistro,fechaUltimoLogin;
     public ManagerModel() {
     }
 
-    public ManagerModel(String nombre, String apellido, String telefono, String email, String fechaRegistro, String fechaUltimoLogin,String cuentaActivada,String sexo,String estado,String ciudad,String urlImagenFotoPerfil,String urlImagenFotoLicencia) {
+    public ManagerModel(String nombre, String apellido, String telefono, String email, Date fechaRegistro, Date fechaUltimoLogin,String cuentaActivada,String sexo,String estado,String ciudad,String urlImagenFotoPerfil,String urlImagenFotoLicencia) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
         this.email = email;
         this.fechaRegistro = fechaRegistro;
-        this.FechaUltimoLogin = fechaUltimoLogin;
+        this.fechaUltimoLogin = fechaUltimoLogin;
         this.cuentaActivada = cuentaActivada;
         this.sexo = sexo;
         this.estado = estado;
@@ -53,20 +55,20 @@ public class ManagerModel {
         this.email = email;
     }
 
-    public String getFechaRegistro() {
+    public Date getFechaRegistro() {
         return fechaRegistro;
     }
 
-    public void setFechaRegistro(String fechaRegistro) {
+    public void setFechaRegistro(Date fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
 
-    public String getFechaUltimoLogin() {
-        return FechaUltimoLogin;
+    public Date getFechaUltimoLogin() {
+        return fechaUltimoLogin;
     }
 
-    public void setFechaUltimoLogin(String fechaUltimoLogin) {
-        FechaUltimoLogin = fechaUltimoLogin;
+    public void setFechaUltimoLogin(Date fechaUltimoLogin) {
+        fechaUltimoLogin = fechaUltimoLogin;
     }
 
     public String getCuentaActivada() {

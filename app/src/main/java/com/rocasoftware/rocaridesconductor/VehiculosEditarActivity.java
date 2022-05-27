@@ -57,6 +57,7 @@ public class VehiculosEditarActivity extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
+    private CollectionReference contadorRef = db.collection("Contadores");
     private CollectionReference vehiculoRef = db.collection("Vehiculos");
     private CollectionReference marcaRef = db.collection("Marcas");
 
@@ -588,6 +589,8 @@ public class VehiculosEditarActivity extends AppCompatActivity {
                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
                                                 public void onSuccess(Void unused) {
+                                                    //contador Vehiculos
+                                                    contador("Vehiculos","-");
                                                     Handler handler = new Handler();
                                                     handler.postDelayed(new Runnable() {
                                                         public void run() {
@@ -622,6 +625,31 @@ public class VehiculosEditarActivity extends AppCompatActivity {
         });
         dialog.create();
         dialog.show();
+    }
+
+    public void contador(String documento,String operador) {
+        contadorRef.document(documento).get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if(documentSnapshot.exists()) {
+                            int contadorDocumento,contadorFinal;
+                            ContadorModel contador = documentSnapshot.toObject(ContadorModel.class);
+                            contadorDocumento = contador.getContador();
+                            if (operador.equals("+"))
+                            {
+                                contadorFinal = contadorDocumento+1;
+                            }
+                            else
+                            {
+                                contadorFinal = contadorDocumento-1;
+                            }
+                            Map<String,Object> note = new HashMap<>();
+                            note.put("contador",contadorFinal);
+                            contadorRef.document(documento).update(note);
+                        }
+                    }
+                });
     }
 
     @Override

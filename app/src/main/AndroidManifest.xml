@@ -18,17 +18,24 @@
         android:theme="@style/Theme.RocaRidesConductor"
         tools:targetApi="31">
         <activity
+            android:name=".ViajesRegistroActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ViajesActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".VehiculosEditarActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".VehiculosRegistroActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".VehiculosActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ConductoresEditarActivity"
             android:exported="false"

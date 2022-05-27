@@ -156,7 +156,7 @@ public class LoginActivity extends AppCompatActivity {
                                         if (documentSnapshot.exists())
                                         {
                                             Map<String,Object> actualizador = new HashMap<>();
-                                            actualizador.put("fechaUltimoLogin",getTimeDate());
+                                            actualizador.put("fechaUltimoLogin",getTimeStampNow());
 
                                             managerRef.document(idUser).update(actualizador);
                                             accesoButton.setClickable(true);
@@ -175,7 +175,7 @@ public class LoginActivity extends AppCompatActivity {
                                                         if (documentSnapshot.exists())
                                                         {
                                                             Map<String,Object> actualizador = new HashMap<>();
-                                                            actualizador.put("fechaUltimoLogin",getTimeDate());
+                                                            actualizador.put("fechaUltimoLogin",getTimeStampNow());
 
                                                             conductorRef.document(idUser).update(actualizador);
                                                             accesoButton.setClickable(true);
@@ -211,13 +211,11 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public static String getTimeDate() { // without parameter argument
+    public Date getTimeStampNow() { // without parameter argument
         try{
-            Date netDate = new Date(); // current time from here
-            SimpleDateFormat sfd = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault());
-            return sfd.format(netDate);
+            return new Date();
         } catch(Exception e) {
-            return "date";
+            return null;
         }
     }
 

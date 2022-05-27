@@ -163,6 +163,50 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/viajesCardView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                app:cardCornerRadius="15dp"
+                app:cardPreventCornerOverlap="true">
+
+                <RelativeLayout
+                    android:layout_width="400dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/background_card"
+                    android:minHeight="100dp"
+                    android:padding="10dp">
+
+
+                    <ImageView
+                        android:id="@+id/viajesImage"
+                        android:layout_width="78dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginRight="20dp"
+                        android:adjustViewBounds="true"
+                        android:cropToPadding="true"
+                        android:maxHeight="90dp"
+                        android:src="@drawable/viajes" />
+
+                    <TextView
+                        android:id="@+id/textViewSub4Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_centerInParent="true"
+                        android:layout_toRightOf="@+id/viajesImage"
+                        android:fontFamily="@font/abel"
+                        android:text="Viajes"
+                        android:textSize="20sp" />
+
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
                 android:id="@+id/logoutCardView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
